@@ -54,8 +54,6 @@ export default function CountrySelector() {
           <CommandInput placeholder="Search country..." className="h-9" />
           <CommandList>
             {data && Array.isArray(data) ? (
-              <CommandEmpty>No Country found.</CommandEmpty>
-            ) : (
               <CommandGroup>
                 {options.map((o) => (
                   <CommandItem
@@ -76,6 +74,8 @@ export default function CountrySelector() {
                   </CommandItem>
                 ))}
               </CommandGroup>
+            ) : (
+              <CommandEmpty>No Country found.</CommandEmpty>
             )}
           </CommandList>
         </Command>

@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import Header from "./components/header";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { Route, Routes, useParams } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import CountrySelector from "./components/ui/countrySelector";
+import NotFound from "./components/pages/not-found/not-found";
+import Home from "./components/pages/home/home";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,19 +20,25 @@ function App() {
     i18n: { changeLanguage },
   } = useTranslation();
   const { lang } = useParams();
+  const isLangSupported = lang && ["en", "ar"].includes(lang);
 
   useEffect(() => {
-    if (lang && ["en", "ar"].includes(lang)) {
+    if (isLangSupported) {
       changeLanguage(lang);
     }
-  }, [lang, changeLanguage]);
+  }, [isLangSupported, changeLanguage, lang]);
   return (
     <QueryClientProvider client={queryClient}>
       <div dir={lang === "ar" ? "rtl" : "ltr"}>
         <Header />
-        <main className="min-h-screen-header container">
-          <CountrySelector />
-        </main>
+        {isLangSupported ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        ) : (
+          <NotFound />
+        )}
       </div>
     </QueryClientProvider>
   );

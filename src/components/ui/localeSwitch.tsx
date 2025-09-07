@@ -3,7 +3,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router";
@@ -21,8 +20,16 @@ export default function LocaleSwitch() {
   };
   return (
     <Select value={lang} onValueChange={handleChangeLanguage}>
-      <SelectTrigger className="w-fit">
-        <SelectValue placeholder="Language" />
+      <SelectTrigger className="hover:bg-background flex size-10 items-center justify-center border-none p-0 shadow-none transition-all [&>svg]:hidden">
+        {lang === "en" ? (
+          <span className="scale-[1.2] lg:scale-150" aria-label="English">
+            <ENFlag />
+          </span>
+        ) : (
+          <span className="scale-[1.2] lg:scale-150" aria-label="العربية">
+            <ARFlag />
+          </span>
+        )}
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="en">
@@ -38,17 +45,11 @@ export default function LocaleSwitch() {
   );
 }
 
-const ENFlag = ({
-  width = 32,
-  height = 32,
-}: {
-  width?: number;
-  height?: number;
-}) => (
+const ENFlag = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={width}
-    height={height}
+    width={32}
+    height={32}
     viewBox={`0 0 32 32`}
   >
     <rect
@@ -107,11 +108,11 @@ const ENFlag = ({
   </svg>
 );
 
-const ARFlag = ({ width = 32, height = 32 }) => (
+const ARFlag = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={width}
-    height={height}
+    width={32}
+    height={32}
     viewBox="0 0 32 32"
   >
     <rect
