@@ -37,20 +37,20 @@
   --foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.6499 0.1722 268.67);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.7248 0.1441 230.6);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(53.2% 0 0);
+  --accent: oklch(0.7248 0.1441 230.6);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --input: oklch(97.9% 0.005 258.9);
+  --ring: oklch(0.7248 0.1441 230.6);
 
-  --header-height: 81px;
+  --header-height: 61px;
   --header-screen-height: calc(100vh - var(--header-height));
 }
 
@@ -73,5 +73,46 @@
 
   #root {
     @apply w-full;
+  }
+
+  .phoneInput {
+    @apply !bg-input !border-border focus-visible:border-ring focus-visible:ring-ring/50 !h-[49px] !w-full border focus-visible:ring-[3px];
+  }
+
+  .phoneButton {
+    @apply !border-none !bg-transparent hover:!bg-transparent;
+  }
+
+  .phoneDropdown {
+    width: 250px !important;
+  }
+
+  .phoneInputSearch {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .phoneInputSearch span {
+    display: none;
+  }
+
+  .phoneInputSearch input {
+    margin: 0 !important;
+    width: 230px;
+    border-radius: 0 !important;
+  }
+
+  @media (max-width: 1024px) {
+    .phoneInput {
+      height: 39px !important;
+    }
+  }
+
+  .pac-container {
+    z-index: 9999 !important;
+  }
+
+  .widget-container {
+    @apply !bg-white;
   }
 }

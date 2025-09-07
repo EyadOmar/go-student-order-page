@@ -36,7 +36,7 @@
       "sessions": "Number of sessions P.M.",
       "regular": "Regular price",
       "price": "Your Price",
-      "discount": "Discount {discount}%",
+      "discount": "Discount {{discount}}%",
       "setup": "Setup fee",
       "total": "Total P.M.",
       "accept": "I accept the",

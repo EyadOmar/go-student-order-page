@@ -18,7 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export default function CountrySelector() {
+export default function CountrySelector({ className }: { className?: string }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const { data, isLoading, isFetching } = useQuery({
@@ -43,9 +43,11 @@ export default function CountrySelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className={cn("w-[200px] justify-between", className)}
         >
-          {value ? options.find((o) => o.value === value)?.label : "Country"}
+          <span className="max-w-full truncate">
+            {value ? options.find((o) => o.value === value)?.label : "Country"}
+          </span>
           <ChevronDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
