@@ -1,0 +1,50 @@
+{
+  "translation": {
+    "satisfaction": "95 Satisfaction rate!",
+    "register": {
+      "title": "Registration & Booking at GoStudent",
+      "subtitle": "The leading platform for online tutoring.",
+      "prefer": "preferably",
+      "students": "the student's",
+      "parents": "the parent's",
+      "loginPhone": "Login Phone Number",
+      "contactPhone": "Contact Phone Number",
+      "email": "Contact Email Address",
+      "name": "Contact Name",
+      "address": {
+        "label": "Billing Address",
+        "placeholder": "Address"
+      },
+      "postalCode": "Postal Code",
+      "city": "City",
+      "country": "Country",
+      "sessions": {
+        "label": "Monthly Sessions",
+        "name": "Sesstions"
+      },
+      "payment": {
+        "label": "Select Payment Method",
+        "name": "Card Holder",
+        "cardNumber": "Card Number",
+        "secure": "100% secure payment. All data is encrypted."
+      }
+    },
+    "order": {
+      "title": "Order overview",
+      "months": "Months",
+      "inAdvance": "Pay In advance - EXTRA 5% Discount",
+      "sessions": "Number of sessions P.M.",
+      "regular": "Regular price",
+      "price": "Your Price",
+      "discount": "Discount {discount}%",
+      "setup": "Setup fee",
+      "total": "Total P.M.",
+      "accept": "I accept the",
+      "terms": "Terms and Conditions",
+      "accept2": "and understand my",
+      "privacy": "right of withdrawal",
+      "accept3": "as well as the circumstances that lead to a repeal of the same.",
+      "cta": "Order Now"
+    }
+  }
+}
