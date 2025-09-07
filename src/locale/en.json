@@ -27,6 +27,11 @@
         "name": "Card Holder",
         "cardNumber": "Card Number",
         "secure": "100% secure payment. All data is encrypted."
+      },
+      "errors": {
+        "required": "Required",
+        "invalidEmail": "Invalid email",
+        "invalidPhone": "Invalid phone number"
       }
     },
     "order": {

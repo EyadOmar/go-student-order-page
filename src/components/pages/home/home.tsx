@@ -7,24 +7,44 @@ import { PhoneNoInput } from "@/components/ui/phoneInput";
 import TextInput from "@/components/ui/textInput";
 import CountrySelector from "@/components/ui/countrySelector";
 import { SwitchInput } from "@/components/ui/switchInput";
+import { isPhoneValid } from "@/lib/utils";
 export default function Home() {
   const { t } = useTranslation();
   const formSchema = z.object({
-    loginPhone: z.string(),
-    contactPhone: z.string(),
-    email: z.string(),
-    name: z.string(),
-    address: z.string(),
+    loginPhone: z
+      .string()
+      .min(1, t("register.errors.required"))
+      .refine((value) => isPhoneValid(value), {
+        message: t("register.errors.invalidPhone"),
+      }),
+    contactPhone: z.string().refine((value) => isPhoneValid(value), {
+      message: t("register.errors.invalidPhone"),
+    }),
+    email: z
+      .string()
+      .min(1, t("register.errors.required"))
+      .refine(
+        (value) => {
+          const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+          return emailRegex.test(value);
+        },
+        {
+          message: t("register.errors.invalidEmail"),
+        },
+      ),
+    name: z.string().min(1, t("register.errors.required")),
+    address: z.string().min(1, t("register.errors.required")),
     monthlySessions: z.number(),
     paymentMethod: z.string(),
-    cardHolderName: z.string(),
-    cardNumber: z.string(),
-    cardExpiryMonth: z.string(),
-    cardExpiryYear: z.string(),
-    cardCVV: z.string(),
+    cardHolderName: z.optional(z.string()),
+    cardNumber: z.optional(z.string()),
+    cardExpiryMonth: z.optional(z.string()),
+    cardExpiryYear: z.optional(z.string()),
+    iban: z.optional(z.string()),
+    cardCVV: z.optional(z.string()),
     payInAdvance: z.boolean(),
     totalMonths: z.number(),
-    buildingNo: z.string(),
+    buildingNo: z.optional(z.string()),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,6 +64,7 @@ export default function Home() {
       cardCVV: "",
       payInAdvance: false,
       totalMonths: 6,
+      buildingNo: "",
     },
   });
 
@@ -95,9 +116,10 @@ export default function Home() {
                 }}
               />
 
+              {/* address Inputs  */}
               <div className="space-y-4">
-                <div className="flex items-end gap-5 max-[380px]:flex-wrap">
-                  <div className="min-w-[120px] flex-1 max-[380px]:basis-full">
+                <div className="grid grid-cols-2 items-end gap-5 max-[380px]:grid-cols-1 md:grid-cols-4">
+                  <div className="md:col-span-3">
                     <TextInput
                       name="address"
                       inputProps={{
@@ -107,18 +129,16 @@ export default function Home() {
                       }}
                     />
                   </div>
-                  <div className="max-[380px]:basis-full">
-                    <TextInput
-                      name="buildingNo"
-                      inputProps={{
-                        type: "text",
-                        placeholder: "Nr",
-                      }}
-                    />
-                  </div>
+                  <TextInput
+                    name="buildingNo"
+                    inputProps={{
+                      type: "text",
+                      placeholder: "Nr",
+                    }}
+                  />
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
+                <div className="grid gap-5 md:grid-cols-3">
                   <TextInput
                     name="postalCode"
                     inputProps={{
@@ -135,7 +155,7 @@ export default function Home() {
                     }}
                   />
 
-                  <CountrySelector className="!bg-input h-[49px] w-full font-normal hover:!text-black max-md:col-span-2 md:text-sm" />
+                  <CountrySelector className="!bg-input h-[49px] w-full font-normal hover:!text-black max-md:col-span-2 max-sm:col-span-1 md:text-sm" />
                 </div>
               </div>
             </div>
