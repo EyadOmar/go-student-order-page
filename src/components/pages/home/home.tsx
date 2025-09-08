@@ -125,11 +125,31 @@ export default function Home() {
             <div className="space-y-6">
               <PhoneNoInput
                 name="loginPhone"
-                label={`${t("register.loginPhone")} (${t("register.prefer")})`}
+                label={
+                  <>
+                    {t("register.loginPhone")}{" "}
+                    <span className="text-black">
+                      ({t("register.prefer")}{" "}
+                      <span className="underline">
+                        {t("register.students")}
+                      </span>
+                      )
+                    </span>
+                  </>
+                }
               />
               <PhoneNoInput
                 name="contactPhone"
-                label={t("register.contactPhone")}
+                label={
+                  <>
+                    {t("register.contactPhone")}{" "}
+                    <span className="text-black">
+                      ({t("register.prefer")}{" "}
+                      <span className="underline">{t("register.parents")}</span>
+                      )
+                    </span>
+                  </>
+                }
               />
               <TextInput
                 name="email"

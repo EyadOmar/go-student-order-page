@@ -5,6 +5,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import type { ReactNode } from "react";
 import { useFormContext, type FieldValues, type Path } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
@@ -13,10 +14,9 @@ import "react-phone-input-2/lib/style.css";
 export function PhoneNoInput<T extends FieldValues>({
   name,
   label,
-  hint,
 }: {
   name: Path<T>;
-  label?: string;
+  label?: ReactNode;
   hint?: string;
 }) {
   const { control } = useFormContext();
@@ -33,7 +33,6 @@ export function PhoneNoInput<T extends FieldValues>({
           {label && (
             <FormLabel htmlFor={name} dir={language === "ar" ? "rtl" : "ltr"}>
               {label}{" "}
-              {hint && <span className="font-bold underline">({hint})</span>}
             </FormLabel>
           )}
           <FormControl>
