@@ -36,9 +36,10 @@ Make sure you have the following installed on your machine:
 
 To get a local copy up and running, follow these simple steps.
 
-1.  git clone \[https://github.com/EyadOmar/go-student-order-page.git\](https://github.com/EyadOmar/go-student-order-page.git)cd your-repository
-2.  npm install
-3.  npm run dev
+1.  git clone https://github.com/EyadOmar/go-student-order-page.git
+2.  cd go-student-order-page
+3.  npm install
+4.  npm run dev
 
 The application will be accessible at http://localhost:5173.
 
