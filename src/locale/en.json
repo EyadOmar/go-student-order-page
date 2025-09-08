@@ -1,6 +1,12 @@
 {
   "translation": {
     "satisfaction": "95 Satisfaction rate!",
+    "advantages": "All Advantages",
+    "country": {
+      "name": "Country",
+      "search": "Search country...",
+      "empty": "No Country found."
+    },
     "register": {
       "title": "Registration & Booking at GoStudent",
       "subtitle": "The leading platform for online tutoring.",
@@ -31,7 +37,11 @@
       "errors": {
         "required": "Required",
         "invalidEmail": "Invalid email",
-        "invalidPhone": "Invalid phone number"
+        "invalidPhone": "Invalid phone number",
+        "invalidIBAN": "Invalid IBAN",
+        "invalidExpiry": "Invalid expiry date",
+        "invalidCVV": "Invalid CVV",
+        "invalidCardNumber": "Invalid card number"
       }
     },
     "order": {

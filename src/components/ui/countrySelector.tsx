@@ -17,9 +17,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useTranslation } from "react-i18next";
 
 export default function CountrySelector({ className }: { className?: string }) {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
   const [value, setValue] = React.useState("");
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["countries"],
@@ -46,14 +48,16 @@ export default function CountrySelector({ className }: { className?: string }) {
           className={cn("w-[200px] justify-between", className)}
         >
           <span className="max-w-full truncate">
-            {value ? options.find((o) => o.value === value)?.label : "Country"}
+            {value
+              ? options.find((o) => o.value === value)?.label
+              : t("country.name")}
           </span>
           <ChevronDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search country..." className="h-9" />
+          <CommandInput placeholder={t("country.search")} className="h-9" />
           <CommandList>
             {data && Array.isArray(data) ? (
               <CommandGroup>
@@ -77,7 +81,7 @@ export default function CountrySelector({ className }: { className?: string }) {
                 ))}
               </CommandGroup>
             ) : (
-              <CommandEmpty>No Country found.</CommandEmpty>
+              <CommandEmpty>{t("country.empty")}</CommandEmpty>
             )}
           </CommandList>
         </Command>

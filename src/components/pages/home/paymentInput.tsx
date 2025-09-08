@@ -23,7 +23,7 @@ export default function PaymentInput() {
         control={control}
         name="paymentMethod"
         render={({ field }) => (
-          <FormItem className="space-y-3">
+          <FormItem>
             <FormLabel>{t("register.payment.label")}</FormLabel>
             <FormControl>
               <RadioGroup
@@ -68,10 +68,10 @@ export default function PaymentInput() {
       {watch("paymentMethod") === "debitCard" ? (
         <div className="grid grid-cols-2 items-start gap-4 md:grid-cols-5">
           <div className="col-span-2 md:col-span-3">
-            <CardNumberInput label="Card Number" />
+            <CardNumberInput />
           </div>
-          <CardExpiryInput label="Expiry" />
-          <CardCVVInput label="CVV" />
+          <CardExpiryInput />
+          <CardCVVInput />
         </div>
       ) : (
         <IBANInput label="IBAN" />
@@ -88,6 +88,7 @@ export function CardNumberInput({
   className?: string;
 }) {
   const { control } = useFormContext();
+  const { t } = useTranslation();
 
   const formatCardNumber = (value: string) => {
     // Remove all non-digits
@@ -117,7 +118,7 @@ export function CardNumberInput({
             <Input
               {...field}
               className={className}
-              placeholder="Card Number"
+              placeholder={t("register.payment.cardNumber")}
               maxLength={19} // 16 digits + 3 spaces
               onChange={(e) => {
                 const formatted = formatCardNumber(e.target.value);
@@ -141,6 +142,7 @@ export function CardExpiryInput({
   className?: string;
 }) {
   const { control, setError } = useFormContext();
+  const { t } = useTranslation();
 
   const validateExpiry = (expiry: string) => {
     // Remove all non-digits
@@ -203,7 +205,7 @@ export function CardExpiryInput({
                 const isValid = validateExpiry(e.target.value);
                 if (!isValid) {
                   setError("cardExpiryMonthYear", {
-                    message: "Invalid expiry date",
+                    message: t("register.errors.invalidExpiry"),
                   });
                 }
                 field.onBlur();
@@ -263,6 +265,7 @@ export function IBANInput({
   className?: string;
 }) {
   const { control, setError } = useFormContext();
+  const { t } = useTranslation();
 
   const formatIBAN = (value: string) => {
     // Remove all non-alphanumeric characters
@@ -330,7 +333,9 @@ export function IBANInput({
                 // Optional: Validate on blur and show error
                 const isValid = validateIBAN(e.target.value);
                 if (!isValid) {
-                  setError("iban", { message: "Invalid IBAN" });
+                  setError("iban", {
+                    message: t("register.errors.invalidIBAN"),
+                  });
                 }
                 field.onBlur();
               }}

@@ -21,6 +21,7 @@ export function PhoneNoInput<T extends FieldValues>({
 }) {
   const { control } = useFormContext();
   const {
+    t,
     i18n: { language },
   } = useTranslation();
   return (
@@ -43,6 +44,7 @@ export function PhoneNoInput<T extends FieldValues>({
               }}
               country={"gr"}
               enableSearch={true}
+              searchPlaceholder={t("country.search")}
               searchClass="phoneInputSearch"
               onBlur={onBlur}
               inputClass="phoneInput"

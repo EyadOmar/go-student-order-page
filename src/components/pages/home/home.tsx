@@ -11,6 +11,8 @@ import PaymentInput from "./paymentInput";
 import AddressInputs from "./addressInputs";
 import MonthsNoSelect from "./monthsNoSelect";
 import Recipt from "./recipt";
+import SelectPm from "@/components/ui/selectPm";
+import TermsInput from "./termsInput";
 export default function Home() {
   const { t } = useTranslation();
   const formSchema = z.object({
@@ -37,9 +39,9 @@ export default function Home() {
       ),
     name: z.string().min(1, t("register.errors.required")),
     address: z.string().min(1, t("register.errors.required")),
-    monthlySessions: z.number(),
+    monthlySessions: z.string(),
     paymentMethod: z.string(),
-    cardHolderName: z.optional(z.string()),
+    cardHolderName: z.string().min(1, t("register.errors.required")),
     cardNumber: z.optional(z.string()),
     cardExpiryMonthYear: z.optional(z.string()),
     iban: z.optional(z.string()),
@@ -47,6 +49,7 @@ export default function Home() {
     payInAdvance: z.boolean(),
     totalMonths: z.number(),
     buildingNo: z.optional(z.string()),
+    terms: z.boolean(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -57,7 +60,7 @@ export default function Home() {
       email: "",
       name: "",
       address: "",
-      monthlySessions: 6,
+      monthlySessions: "8",
       paymentMethod: "debitCard",
       cardHolderName: "",
       cardNumber: "",
@@ -66,12 +69,41 @@ export default function Home() {
       payInAdvance: false,
       totalMonths: 6,
       buildingNo: "",
+      terms: false,
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    if (!values.terms) {
+      form.setError("terms", {
+        message: "You must accept terms and conditions",
+      });
+    }
+
+    if (values.paymentMethod === "debitCard") {
+      if (!values.cardNumber) {
+        form.setError("cardNumber", {
+          message: t("register.errors.required"),
+        });
+      }
+      if (!values.cardExpiryMonthYear) {
+        form.setError("cardExpiryMonthYear", {
+          message: t("register.errors.required"),
+        });
+      }
+      if (!values.cardCVV) {
+        form.setError("cardCVV", {
+          message: t("register.errors.required"),
+        });
+      }
+    } else {
+      if (!values.iban) {
+        form.setError("iban", {
+          message: t("register.errors.required"),
+        });
+      }
+    }
   }
 
   return (
@@ -114,6 +146,10 @@ export default function Home() {
                 }}
               />
               <AddressInputs />
+              <SelectPm
+                name="monthlySessions"
+                label={t("register.sessions.label")}
+              />
               <PaymentInput />
             </div>
           </section>
@@ -124,6 +160,7 @@ export default function Home() {
             <MonthsNoSelect />
             <SwitchInput name="payInAdvance" label={t("order.inAdvance")} />
             <Recipt />
+            <TermsInput />
             <CTA />
           </section>
         </form>

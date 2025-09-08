@@ -1,6 +1,12 @@
 {
   "translation": {
     "satisfaction": "معدل رضا 95٪!",
+    "advantages": "المزايا",
+    "country": {
+      "name": "الدولة",
+      "search": "اسم الدولة",
+      "empty": "لا يوجد دولة مطابقة"
+    },
     "register": {
       "title": "التسجيل والحجز في GoStudent",
       "subtitle": "المنصة الرائدة للدروس الخصوصية عبر الإنترنت.",
@@ -20,7 +26,7 @@
       "country": "الدولة",
       "sessions": {
         "label": "الجلسات الشهرية",
-        "name": "الجلسات"
+        "name": "جلسة"
       },
       "payment": {
         "label": "اختر طريقة الدفع",
@@ -31,7 +37,11 @@
       "errors": {
         "required": "مطلوب",
         "invalidEmail": "البريد الإلكتروني غير صالح",
-        "invalidPhone": "رقم الهاتف غير صالح"
+        "invalidPhone": "رقم الهاتف غير صالح",
+        "invalidIBAN": "IBAN غير صالح",
+        "invalidExpiry": "تاريخ انتهاء الصلاحية غير صالح",
+        "invalidCVV": "رقم CVV غير صالح",
+        "invalidCardNumber": "رقم البطاقة غير صالح"
       }
     },
     "order": {
@@ -41,7 +51,7 @@
       "sessions": "عدد الجلسات شهريًا",
       "regular": "السعر العادي",
       "price": "سعرك",
-      "discount": "خصم {discount}٪",
+      "discount": "خصم {{discount}}٪",
       "setup": "رسوم الإعداد",
       "total": "الإجمالي شهريًا",
       "accept": "أوافق على",
