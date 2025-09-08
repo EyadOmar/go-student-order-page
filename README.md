@@ -52,4 +52,4 @@ the stack I choose for the project is what I am very comfortable with but I coul
 
 ### what I could have done better if I had more time
 - **generate plugin:** generating pluging from the react generated file that can be used in wordpress
-- **hosting: *** I could have used netlify or vercel to host the project to have a live preview for you
+- **hosting:** I could have used netlify or vercel to host the project to have a live preview for you
