@@ -17,31 +17,33 @@ export default function TermsInput() {
       control={control}
       name="terms"
       render={({ field }) => (
-        <FormItem className="flex items-start gap-3">
-          <FormControl>
-            <Checkbox
-              className="border-ring"
-              checked={field.value}
-              onCheckedChange={field.onChange}
-            />
-          </FormControl>
-          <FormLabel className="text-muted-foreground inline text-xs text-wrap normal-case lg:text-sm">
-            {t("order.accept")}{" "}
-            <a
-              href="#"
-              className="text-secondary hover:text-primary inline underline transition-colors"
-            >
-              {t("order.terms")}
-            </a>{" "}
-            {t("order.accept2")}{" "}
-            <a
-              href="#"
-              className="text-secondary hover:text-primary inline underline transition-colors"
-            >
-              {t("order.privacy")}
-            </a>
-            {""} {t("order.accept3")}
-          </FormLabel>
+        <FormItem>
+          <div className="flex items-start gap-3">
+            <FormControl>
+              <Checkbox
+                className="border-ring"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <FormLabel className="text-muted-foreground inline text-xs text-wrap normal-case lg:text-sm">
+              {t("order.accept")}{" "}
+              <a
+                href="#"
+                className="text-secondary hover:text-primary inline underline transition-colors"
+              >
+                {t("order.terms")}
+              </a>{" "}
+              {t("order.accept2")}{" "}
+              <a
+                href="#"
+                className="text-secondary hover:text-primary inline underline transition-colors"
+              >
+                {t("order.privacy")}
+              </a>
+              {""} {t("order.accept3")}
+            </FormLabel>
+          </div>
           <FormMessage />
         </FormItem>
       )}

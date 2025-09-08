@@ -59,7 +59,8 @@
       "accept2": "and understand my",
       "privacy": "right of withdrawal",
       "accept3": "as well as the circumstances that lead to a repeal of the same.",
-      "cta": "Order Now"
+      "cta": "Order Now",
+      "success": "Data has been successfully submitted. check logs to see the data."
     }
   }
 }

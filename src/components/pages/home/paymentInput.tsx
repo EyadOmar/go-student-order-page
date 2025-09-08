@@ -145,27 +145,35 @@ export function CardExpiryInput({
   const { t } = useTranslation();
 
   const validateExpiry = (expiry: string) => {
-    // Remove all non-digits
-    const v = expiry.replace(/\D/g, "");
+    const [month, year] = expiry.split("/");
 
-    // Check if starts with 2 digits
-    if (v.length < 2) {
+    // Check if both month and year are present
+    if (!month || !year) {
       return false;
     }
 
-    // Check if ends with 2 digits
-    if (v.length > 4) {
+    // Check if month is valid
+    const currentMonth = new Date().getMonth() + 1;
+    const currentYear = new Date().getFullYear();
+    const expMonth = parseInt(month, 10);
+    let expYear = parseInt(year, 10);
+
+    if (expMonth < 1 || expMonth > 12) {
       return false;
     }
 
-    // Check if has 2 slashes
-    if (v.split("/").length !== 2) {
+    // Handle two-digit years
+    if (expYear < 100) {
+      expYear += 2000;
+    }
+
+    // Check if the expiry year is in the past
+    if (expYear < currentYear) {
       return false;
     }
 
-    // Check if has valid date
-    const [month, year] = v.split("/");
-    if (+month < 1 || +month > 12 || +year < 1000 || +year > 9999) {
+    // If the expiry year is the current year, check the month
+    if (expYear === currentYear && expMonth < currentMonth) {
       return false;
     }
 

@@ -13,6 +13,7 @@ import MonthsNoSelect from "./monthsNoSelect";
 import Recipt from "./recipt";
 import SelectPm from "@/components/ui/selectPm";
 import TermsInput from "./termsInput";
+import { toast } from "sonner";
 export default function Home() {
   const { t } = useTranslation();
   const formSchema = z.object({
@@ -104,6 +105,8 @@ export default function Home() {
         });
       }
     }
+    console.log(values);
+    toast.success(t("order.success"));
   }
 
   return (
