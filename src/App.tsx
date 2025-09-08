@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 import Header from "./components/header";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { Route, Routes, useParams } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NotFound from "./components/pages/not-found/not-found";
-import Home from "./components/pages/home/home";
+const Home = lazy(() => import("./components/pages/home/home"));
+
 import { Toaster } from "./components/ui/sonner";
 
 const queryClient = new QueryClient({

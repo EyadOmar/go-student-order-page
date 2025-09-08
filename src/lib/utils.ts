@@ -1,13 +1,21 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { PhoneNumberUtil } from "google-libphonenumber";
 
-const phoneUtil = PhoneNumberUtil.getInstance();
-
-export function isPhoneValid(phone: string) {
+export function isPhoneValid(phone: string): boolean {
   try {
-    return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
-  } catch {
+    if (!phone || typeof phone !== "string") {
+      return false;
+    }
+
+    // Remove all whitespace characters from the string
+    const cleanedPhone = phone.replace(/\s/g, "");
+
+    // Regex to match a pattern of digits, parentheses, hyphens, and an optional leading plus sign
+    const regex = /^\+?[0-9()\s-]+$/;
+
+    return regex.test(cleanedPhone);
+  } catch (error) {
+    console.error("Error validating phone number:", error);
     return false;
   }
 }
